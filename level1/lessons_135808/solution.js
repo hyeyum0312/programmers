@@ -23,29 +23,22 @@ solution(3, 4, score);
 // solution(4, 3, score);
 function solution(k, m, score) {
     // 배열을 내림차순으로 정렬한다.
-    let sort_arr = score.sort(function (a, b) {
-        if (a > b) {
-            return -1;
-        } else if (b > a) {
-            return 1;
-        } else {
-            return 0;
-        }
-    });
+    let sort_arr = score.sort((a,b) => b-a);
     let arr_cut = []; // 배열을 한상자 갯수만큼 나누기
     let low_apple = []; // 나눈배열을 돌면서 가장 낮은 값 다른 배열에 담기 (가장 낮은점수의 사과들)
+    let maximum = 0;
+
     for (let i = 0; i < sort_arr.length; i += m) {
         arr_cut.push(sort_arr.slice(i, i + m));
     }
     arr_cut.forEach(function (val, index) {
-        // 한상자가 다 만들어져야함
-        if (val.length == m) {
+        if (val.length == m) { // 한상자가 다 만들어져야함
             let low = val[val.length - 1]
             let price = low * m
             low_apple.push(price);
         }
     });
-    let maximum = 0;
+
     for (let i = 0; i < low_apple.length; i++) {
         maximum += low_apple[i]
     }
