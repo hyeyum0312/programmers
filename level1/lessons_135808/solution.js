@@ -32,27 +32,24 @@ function solution(k, m, score) {
             return 0;
         }
     });
-
     let arr_cut = []; // 배열을 한상자 갯수만큼 나누기
     let low_apple = []; // 나눈배열을 돌면서 가장 낮은 값 다른 배열에 담기 (가장 낮은점수의 사과들)
     for (let i = 0; i < sort_arr.length; i += m) {
         arr_cut.push(sort_arr.slice(i, i + m));
     }
-
-    arr_cut.forEach(function (val,index) {
+    arr_cut.forEach(function (val, index) {
         // 한상자가 다 만들어져야함
         if (val.length == m) {
-            let low = val[val.length-1]
+            let low = val[val.length - 1]
             let price = low * m
             low_apple.push(price);
         }
     });
-
     let maximum = 0;
-    for (let i=0; i<low_apple.length; i++) {
+    for (let i = 0; i < low_apple.length; i++) {
         maximum += low_apple[i]
     }
     let answer = maximum;
-    console.log('answer',answer);
+    console.log('answer', answer);
     return answer
 }
