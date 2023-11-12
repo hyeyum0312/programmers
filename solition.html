@@ -1,39 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-</body>
-<script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        const players = ["mumu", "soe", "poe", "kai", "mine"];
+        const callings = ["kai", "kai", "mine", "mine"];
 
+        function solution(players, callings) {
+            const score = players.reduce((acc, value, index) => {
+                acc[value] = index;
+                return acc;
+            }, {});
 
+            callings.forEach((value) => {
+                const index = score[value];
+                const temp = players[index - 1];
 
+                [players[index - 1], players[index]] = [value, temp];
+                score[temp] += 1;
+                score[value] -= 1;
+            });
 
-    let X = [1,0,0];
-    let Y = [2,3,4,5];
-    solution(X,Y);
-    function solution(X, Y) {
-
-        let arr = X.filter(x1 => Y.some(x2 => x1 == x2 ));
-        if (arr.length == 0) {
-            return -1
-        } else {
-            console.log('arr2', arr);
-            for (let idx = 0; idx < arr.length; idx++) {
-                console.log('arr[idx]', arr[idx]);
-
-
-            }
-
-            let answer;
-            return answer;
+            return players;
         }
-    }
 
-
-</script>
+        solution(players, callings);
+    </script>
 </html>
