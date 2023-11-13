@@ -8,35 +8,48 @@
     </head>
     <body></body>
     <script>
-        const players = ["mumu", "soe", "poe", "kai", "mine"];
-        const callings = ["kai", "kai", "mine", "mine"];
+        const name = ["may", "kein", "kain", "radi"];
+        const yearning = [5, 10, 1, 3];
+        const photo = [
+            ["may", "kein", "kain", "radi"],
+            ["may", "kein", "brin", "deny"],
+            ["kon", "kain", "may", "coni"],
+        ];
+        let ggg;
 
-        function solution(players, callings) {
-            const score = players.reduce((acc, value, index) => {
-                acc[value] = index;
-                return acc;
-            }, {});
+        function solution(name, yearning, photo) {
+            var answer = [];
+            let score = [];
+            let count = 0;
+            let photoscore = [];
+            for (let idx in name) {
+                score.push({ key: name[idx], value: yearning[idx] });
+            }
 
-            console.log("score", score);
-            callings.forEach((value) => {
-                const index = score[value];
-                const temp = players[index - 1];
+            let ckck = 0;
+            let ck = [];
 
-                console.log("index", index);
-                console.log("temp", temp);
-                console.log("value", value);
+            for (let item in photo) {
+                let ckckck = [];
 
-                console.log("players[index - 1]", players[index - 1]);
-                console.log("players[index]", players[index]);
+                for (let idx in photo[item]) {
+                    score.filter((item3) => {
+                        if (item3.key === photo[item][idx]) {
+                            ckckck.push(item3.value);
+                        }
+                    });
+                }
 
-                [players[index - 1], players[index]] = [value, temp];
-                score[temp] += 1;
-                score[value] -= 1;
-            });
+                let result = ckckck.reduce((prev, cur) => {
+                    return (prev += cur);
+                }, 0);
 
-            return players;
+                photoscore.push(result);
+            }
+
+            return photoscore;
         }
 
-        solution(players, callings);
+        solution(name, yearning, photo);
     </script>
 </html>
