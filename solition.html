@@ -17,9 +17,17 @@
                 return acc;
             }, {});
 
+            console.log("score", score);
             callings.forEach((value) => {
                 const index = score[value];
                 const temp = players[index - 1];
+
+                console.log("index", index);
+                console.log("temp", temp);
+                console.log("value", value);
+
+                console.log("players[index - 1]", players[index - 1]);
+                console.log("players[index]", players[index]);
 
                 [players[index - 1], players[index]] = [value, temp];
                 score[temp] += 1;

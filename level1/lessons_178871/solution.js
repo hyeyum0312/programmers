@@ -1,12 +1,30 @@
-function solution(today, terms, privacies) {
-    const termsObj = {};
-    const destroy = [];
-    terms.forEach(term => termsObj[term.split(" ")[0]] = term.split(" ")[1]);
-    privacies.forEach((priv, i) => {
-        const [date, term] = priv.split(" ");
-        const finalDate = new Date(date);
-        finalDate.setMonth(finalDate.getMonth() + +termsObj[term]);
-        if (finalDate <= new Date(today)) destroy.push(i + 1);
+const players = ["mumu", "soe", "poe", "kai", "mine"];
+const callings = ["kai", "kai", "mine", "mine"];
+
+function solution(players, callings) {
+    const score = players.reduce((acc, value, index) => {
+        acc[value] = index;
+        return acc;
+    }, {});
+
+    console.log("score", score);
+    callings.forEach((value) => {
+        const index = score[value];
+        const temp = players[index - 1];
+
+        console.log("index", index);
+        console.log("temp", temp);
+        console.log("value", value);
+
+        console.log("players[index - 1]", players[index - 1]);
+        console.log("players[index]", players[index]);
+
+        [players[index - 1], players[index]] = [value, temp];
+        score[temp] += 1;
+        score[value] -= 1;
     });
-    return destroy;
+
+    return players;
 }
+
+solution(players, callings);
